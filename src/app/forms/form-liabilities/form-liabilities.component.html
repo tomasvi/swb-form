@@ -1,0 +1,170 @@
+<form [formGroup]="form" [ngClass]="{'validate' : formValidation}">
+  <infobox
+    class="infobox"
+    type='warning'
+    message='Pastaba! Nurodomi ne "Swedbank", AB grupės įmonėse Lietuvoje turimi ir planuojami įsipareigojimai.'
+  ></infobox>
+  <table>
+    <thead>
+      <tr>
+        <th>Finansinio įsipareigojimo tipas</th>
+        <th>Kredito suma/likutis</th>
+        <th>Mėnesio įmoka</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr formGroupName="consumer">
+        <td>Vartojimo paskolos (taip pat laidavimai)</td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="consumer-balance"
+                id="consumer-balance"
+                formControlName="balance"
+                (blur)="onBlurBalance('consumer')"
+              >
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="consumer-monthly"
+                id="consumer-monthly"
+                formControlName="monthly"
+                (blur)="onBlurMonthly('consumer')"
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr formGroupName="leasing">
+        <td>Automobilių lizingas (taip pat laidavimai)</td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="leasing-balance"
+                id="leasing-balance"
+                formControlName="balance"
+                (blur)="onBlurBalance('leasing')"
+              >
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="leasing-monthly"
+                id="leasing-monthly"
+                formControlName="monthly"
+                (blur)="onBlurMonthly('leasing')"
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr formGroupName="credit">
+        <td>Kredito kortelės / Kredito linijos (taip pat laidavimai)</td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="credit-balance"
+                id="credit-balance"
+                formControlName="balance"
+                (blur)="onBlurBalance('credit')"
+              >
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="credit-monthly"
+                id="credit-monthly"
+                formControlName="monthly"
+                (blur)="onBlurMonthly('credit')"
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr formGroupName="housing">
+        <td>Būsto paskolos ir paskolos įkeičiant NT (taip pat laidavimai)</td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="housing-balance"
+                id="housing-balance"
+                formControlName="balance"
+                (blur)="onBlurBalance('housing')"
+              >
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="housing-monthly"
+                id="housing-monthly"
+                formControlName="monthly"
+                (blur)="onBlurMonthly('housing')"
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr formGroupName="other">
+        <td>Kitos paskolos</td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="other-balance"
+                id="other-balance"
+                formControlName="balance"
+                (blur)="onBlurBalance('other')"
+              >
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-field">
+            <div class="form-field__control form-field__control--fullwidth">
+              <input
+                type="number"
+                name="other-monthly"
+                id="other-monthly"
+                formControlName="monthly"
+                (blur)="onBlurMonthly('other')"
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Viso įsipareigojimų</th>
+        <td>{{ balanceTotal }} EUR</td>
+        <td>{{ monthlyTotal }} EUR</td>
+      </tr>
+    </tfoot>
+  </table>
+</form>

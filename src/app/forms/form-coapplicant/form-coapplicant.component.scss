@@ -1,0 +1,25 @@
+.form-field {
+  &__control {
+    input, select {
+      min-width: 200px;
+    }
+  }
+  &:nth-of-type(n+4) &__control {
+    input, select {
+      min-width: 300px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    &__control {
+      input, select {
+        width: 100%;
+        min-width: auto;
+      }
+    }
+    &:nth-of-type(n+4) &__control {
+      input, select {
+        min-width: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+.form-field__control select {
+  min-width: 280px;
+}
+.form-field {
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    &__control {
+      input, select {
+        width: 100%;
+      }
+    }
+  }
+}
+.coapplicant-btn {
+  border: 0;
+  outline: 0;
+  display: inline;
+  padding-left: 24px;
+  background: none;
+  position: relative;
+  color: #257886;
+  font-size: 15px;
+  cursor: pointer;
+  &:before, &:after {
+    font: normal 20px Iconique;
+    display: inline-block;
+    text-decoration: none;
+    width: 1em;
+    text-align: center;
+    text-transform: none;
+    background: none;
+    position: absolute;
+    top: -2px;
+    left: 0;
+  }
+  &:before {
+    content: '\e010';
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  &--add {
+    &:before {
+      color: #31a3ae;
+    }
+    &:hover:before {
+      color: #fdc129;
+    }
+    &:after {
+      content: '\e032';
+      color: #fff;
+    }
+    &:hover:after {
+      color: #512b2b;
+    }
+  }
+  &--remove {
+    &:before {
+      color: #c5131c;
+    }
+    &:hover:before {
+      color: #fdc129;
+    }
+    &:after {
+      content: '\e013';
+      color: #fff;
+    }
+    &:hover:after {
+      color: #512b2b;
+    }
+  }
+}
+

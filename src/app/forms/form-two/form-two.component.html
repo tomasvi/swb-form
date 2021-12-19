@@ -1,0 +1,158 @@
+<form [formGroup]="form" [ngClass]="{'validate' : formValidation}">
+  <h3>Papildomi duomenys</h3>
+  <div class="form-field" *ngIf="form.get('education')">
+    <div class="form-field__label">
+      <label for="education" class="required">Išsilavinimas</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="education"
+        id="education"
+        formControlName="education"
+      >
+        <option [ngValue]="0">Pradinis</option>
+        <option [ngValue]="1">Vidurinis</option>
+        <option [ngValue]="2">Spec. vidurinis</option>
+        <option [ngValue]="3">Aukštesnysis</option>
+        <option [ngValue]="4">Aukštasis</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-field" *ngIf="form.get('position')">
+    <div class="form-field__label">
+      <label for="position" class="required">Užimamos pareigos</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="position"
+        id="position"
+        formControlName="position"
+        (change)="onChangePosition()"
+      >
+        <option [ngValue]="0">Darbininkas(-ė)</option>
+        <option [ngValue]="1">Specialistas(-ė), tarnautojas(-a)</option>
+        <option [ngValue]="2">Vyr. Specialistas(-ė)</option>
+        <option [ngValue]="3">Vadovas(-ė) (skyriaus, padalinio)</option>
+        <option [ngValue]="4">Imonės vadovas(-ė)</option>
+        <option [ngValue]="5">Savininkas(-ė)</option>
+        <option [ngValue]="6">Studentas(-ė)</option>
+        <option [ngValue]="7">Pensininkas(-ė)</option>
+        <option [ngValue]="8">Namų šeimininkas(-ė)</option>
+        <option [ngValue]="9">Niekur nedirbu</option>
+        <option [ngValue]="10">Vykdau individualią veiklą</option>
+        <!-- if option value - 6, 7, 8, 9 - don't show 3 next fields -->
+      </select>
+    </div>
+  </div>
+  <div class="form-field" *ngIf="form.get('scope')">
+    <div class="form-field__label">
+      <label for="scope" class="required">Įstaigos, kurioje dirbate, veiklos sritis</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="scope"
+        id="scope"
+        formControlName="scope"
+      >
+        <option [ngValue]="0">Žemės ūkis, miškininkystė, medžioklė, žuvininkystė</option>
+        <option [ngValue]="1">Statyba, apdirbamoji pramonė</option>
+        <option [ngValue]="2">Pramonė</option>
+        <option [ngValue]="3">Prekyba, aptarnavimas</option>
+        <option [ngValue]="4">Transportas, pervežimas, ryšiai</option>
+        <option [ngValue]="5">Finansinis tarpininkavimas</option>
+        <option [ngValue]="6">Švietimas, kultūra</option>
+        <option [ngValue]="7">Nekilnojamasis turtas, nuoma</option>
+        <option [ngValue]="8">Informacinės technologijos</option>
+        <option [ngValue]="9">Teisinis tarpininkavimas, auditas ir kita veikla</option>
+        <option [ngValue]="10">Sveikatos apsauga ir socialinis darbas</option>
+        <option [ngValue]="11">Valstybės valdymas ir gynimas</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-field" *ngIf="form.get('timespan')">
+    <div class="form-field__label">
+      <label for="timespan" class="required">Darbo trukmė dabartinėje darbovietėje</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="timespan"
+        id="timespan"
+        formControlName="timespan"
+      >
+        <option [ngValue]="0">Bandomasis laikotarpis</option>
+        <option [ngValue]="1">Iki 1 metų</option>
+        <option [ngValue]="2">Iki 2 metų</option>
+        <option [ngValue]="3">Iki 3 metų</option>
+        <option [ngValue]="4">Iki 4 metų</option>
+        <option [ngValue]="5">Iki 5 metų</option>
+        <option [ngValue]="6">Virš 5 metų</option>
+      </select>
+    </div>
+  </div>
+  <h3>Asmeniniai duomenys</h3>
+  <div class="form-field" *ngIf="form.get('type')">
+    <div class="form-field__label">
+      <label for="type" class="required">Darbo sutarties tipas</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="type"
+        id="type"
+        formControlName="type"
+      >
+        <option [ngValue]="0">Neterminuota</option>
+        <option [ngValue]="1">Terminuota</option>
+        <option [ngValue]="2">Kita</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-field" *ngIf="form.get('status')">
+    <div class="form-field__label">
+      <label for="status" class="required">Šeimyninė padėtis</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="status"
+        id="status"
+        formControlName="status"
+      >
+        <option [ngValue]="0">Nevedęs (netekėjusi)</option>
+        <option [ngValue]="1">Vedęs (ištekėjusi)</option>
+        <option [ngValue]="2">Bendras gyvenimas nesusituokus</option>
+        <option [ngValue]="3">Išsiskyręs(-usi)</option>
+        <option [ngValue]="4">Našlys(-ė)</option>
+      </select>
+    </div>
+  </div>
+  <h3>Bendraskolio duomenys</h3>
+  <ng-container *ngFor="let formCoapplicant of coapplicants; let i = index">
+    <form-coapplicant [form]="formCoapplicant" [formValidation]="formValidation"></form-coapplicant>
+    <div class="form-field">
+      <div class="form-field__label form-field__label--noheight"></div>
+      <div class="form-field__control">
+        <button class="coapplicant-btn coapplicant-btn--remove" (click)="removeCoapplicant(i)">Ištrinti</button>
+      </div>
+    </div>
+  </ng-container>
+  <div class="form-field">
+    <div class="form-field__label form-field__label--noheight"></div>
+    <div class="form-field__control">
+      <button class="coapplicant-btn coapplicant-btn--add" (click)="addCoapplicant()">Pridėti bendraskolį</button>
+    </div>
+  </div>
+  <h3>Kontaktiniai duomenys</h3>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="phone" class="required">Telefonas</label>
+    </div>
+    <div class="form-field__control">
+      <input
+        type="text"
+        name="phone"
+        id="phone"
+        formControlName="phone"
+        (blur)="onPhoneBlur()"
+      >
+    </div>
+  </div>
+</form>

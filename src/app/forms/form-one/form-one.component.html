@@ -1,0 +1,173 @@
+<form [formGroup]="form" [ngClass]="{'validate' : formValidation}">
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="amount" class="required">Paskolos suma</label>
+    </div>
+    <div class="form-field__control">
+      <div class="slider">
+        <div
+          class="slider__value"
+          [ngStyle]="{
+            marginLeft: 'calc(' + ((form.controls['amount'].value-300)/(20000-300)*100) + '% + 14px)',
+            transform: 'translateX(-' + ((form.controls['amount'].value-300)/(20000-300)*28) + 'px)'
+          }"
+        >
+          {{ form.controls['amount'].value }} &euro;
+        </div>
+        <input
+          type="range"
+          name="amount"
+          id="amount"
+          class="slider__input"
+          formControlName="amount"
+          min="500"
+          max="20000"
+          step="50"
+          [ngStyle]="{
+            background: 'linear-gradient(to right, #ee7023 0%, #ee7023 ' + ((form.controls['amount'].value-300)/(20000-300)*100) + '%, #ebe7e2 ' + ((form.controls['amount'].value-300)/(20000-300)*100) + '%, #ebe7e2 100%)'
+          }"
+        >
+        <div class="slider__mobile">
+          <input
+            type="text"
+            name="amount"
+            id="amount"
+            formControlName="amount"
+            min="500"
+            max="20000"
+            step="50"
+            value="500"
+          >
+          <button (click)="onAmountDeduct()">-</button>
+          <button (click)="onAmountAdd()">+</button>
+        </div>
+        <div class="slider__range">
+          <span>500 &euro;</span>
+          <span>20000 &euro;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="term" class="required">Paskolos terminas</label>
+    </div>
+    <div class="form-field__control">
+      <div class="slider">
+        <div
+          class="slider__value"
+          [ngStyle]="{
+            marginLeft: 'calc(' + ((form.controls['term'].value-6)/(60-6)*100) + '% + 14px)',
+            transform: 'translateX(-' + ((form.controls['term'].value-6)/(60-6)*28) + 'px)'
+          }"
+        >
+          {{ termValueString() }}
+        </div>
+        <input
+          type="range"
+          name="term"
+          id="term"
+          formControlName="term"
+          min="6"
+          max="60"
+          step="6"
+          [ngStyle]="{
+            background: 'linear-gradient(to right, #ee7023 0%, #ee7023 ' + ((form.controls['term'].value-6)/(60-6)*100) + '%, #ebe7e2 ' + ((form.controls['term'].value-6)/(60-6)*100) + '%, #ebe7e2 100%)'
+          }"
+        >
+        <div class="slider__mobile">
+          <input
+            type="number"
+            name="term"
+            id="term"
+            formControlName="term"
+            min="6"
+            max="60"
+            step="6"
+          >
+          <button (click)="onTermDeduct()">-</button>
+          <button (click)="onTermAdd()">+</button>
+        </div>
+        <div class="slider__range">
+          <span>6 mėnesiai</span>
+          <span>60 mėnesių</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="payday" class="required">Paskolos ir palūkanų mokėjimo diena</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="payday"
+        id="payday"
+        formControlName="payday"
+      >
+        <option [ngValue]="3">3</option>
+        <option [ngValue]="7">7</option>
+        <option [ngValue]="12">12</option>
+        <option [ngValue]="17">17</option>
+        <option [ngValue]="22">22</option>
+        <option [ngValue]="27">27</option>
+      </select>
+    </div>
+  </div>
+  <h3>Pajamos ir įsipareigojimai</h3>
+  <infobox
+    *ngIf="salaryWarning"
+    class="infobox"
+    type='warning'
+    message='Jūsų pajamos atskaičius mokesčius turi būti ne mažesnės nei 350 Eur / mėn. Jei paskolą imate su bendraskoliu, bendros šeimos (bendraskolių) pajamos, atskaičius mokesčius, turėtų būti ne mažesnės nei 700 Eur / mėn.'
+  ></infobox>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="salary" class="required">Mėnesinis atlyginimas atskaičius mokesčius</label>
+    </div>
+    <div class="form-field__control">
+      <input
+        type="number"
+        name="salary"
+        id="salary"
+        formControlName="salary"
+        (blur)="onBlurSalary()"
+      >
+      <span>EUR</span>
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="liabilities" class="required">Ar turite (ar planuojate turėti) įsipareigojimų ne "Swedbank", AB grupės įmonėse Lietuvoje?</label>
+    </div>
+    <div class="form-field__control">
+      <label class="radio">
+        <div class="radio__box" [ngClass]="{ 'radio__box--selected' : !form.controls['liabilities'].value }"></div>
+        <input
+          type="radio"
+          name="liabilities"
+          id="liabilities-0"
+          formControlName="liabilities"
+          [value]="false"
+          (change)="onChangeLiabilities()"
+        >
+        <span>Ne</span>
+      </label>
+      <label class="radio">
+        <div class="radio__box" [ngClass]="{ 'radio__box--selected' : form.controls['liabilities'].value }"></div>
+        <input
+          type="radio"
+          name="liabilities"
+          id="liabilities-1"
+          formControlName="liabilities"
+          [value]="true"
+          (change)="onChangeLiabilities()"
+        >
+        <span>Taip</span>
+      </label>
+    </div>
+  </div>
+  <ng-container *ngIf="form.controls['liabilities'].value && form.controls['liabilitiesDetailed']">
+    <form-liabilities [form]="formLiabilities" [formValidation]="formValidation"></form-liabilities>
+  </ng-container>
+</form>

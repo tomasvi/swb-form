@@ -1,0 +1,71 @@
+
+<form [formGroup]="form" [ngClass]="{'validate' : formValidation}">
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="phone" class="required">Vardas</label>
+    </div>
+    <div class="form-field__control">
+      <input
+        type="text"
+        name="firstname"
+        id="firstname"
+        formControlName="firstname"
+      >
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="phone" class="required">Pavardė</label>
+    </div>
+    <div class="form-field__control">
+      <input
+        type="text"
+        name="lastname"
+        id="lastname"
+        formControlName="lastname"
+      >
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="phone" class="required">Asmens kodas</label>
+    </div>
+    <div class="form-field__control">
+      <input
+        type="text"
+        name="code"
+        id="code"
+        formControlName="code"
+      >
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="phone" class="required">Bendraskolis yra mano</label>
+    </div>
+    <div class="form-field__control">
+      <select
+        name="relationship"
+        id="relationship"
+        formControlName="relationship"
+      >
+        <option [ngValue]="0">Sutuoktinis(-ė)</option>
+        <option [ngValue]="1">Partneris(-ė)</option>
+        <option [ngValue]="2">Kita</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="form-field__label">
+      <label for="phone" class="required">Bendraskolio el. pašto adresas, kuriuo bus nusiųsta nuoroda į paraišką</label>
+    </div>
+    <div class="form-field__control">
+      <input
+        type="text"
+        name="email"
+        id="email"
+        formControlName="email"
+      >
+    </div>
+  </div>
+</form>

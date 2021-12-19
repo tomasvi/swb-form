@@ -1,0 +1,81 @@
+.infobox {
+  display: block;
+  margin-bottom: 10px;
+}
+table {
+  thead th {
+    background: #E9F7FB;
+  }
+  td {
+    vertical-align: top;
+    input {
+      width: 100%;
+    }
+  }
+  tfoot tr th {
+    font-weight: bold;
+  }
+  tfoot tr td {
+    font-weight: bold;
+    text-align: right;
+    line-height: 24px;
+    border-bottom: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  @media screen and (max-width: 767px) {
+    tr {
+      display: flex;
+      flex-direction: column;
+    }
+    thead {
+      display: none;
+    }
+    tbody {
+      td:nth-child(1) {
+        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        &:before {
+          content: 'Finansinio įsipareigojimo tipas';
+          color: #A38B80;
+          text-align: left;
+        }
+      }
+      td:nth-child(2) {
+        &:before {
+          content: 'Kredito suma/likutis';
+          color: #A38B80;
+          text-align: left;
+        }
+      }
+      td:nth-child(3) {
+        &:before {
+          content: 'Mėnesio įmoka';
+          color: #A38B80;
+          text-align: left;
+        }
+      }
+    }
+    tfoot {
+      tr th {
+        display: none;
+      }
+      tr td {
+        display: flex;
+        justify-content: space-between;
+        &:before {
+          color: #A38B80;
+          text-align: left;
+          font-weight: bold;
+        }
+        &:nth-of-type(1):before {
+          content: 'Kredito suma/likutis';
+        }
+        &:nth-of-type(2):before {
+          content: 'Mėnesio įmoka';
+        }
+      }
+    }
+  }
+}
